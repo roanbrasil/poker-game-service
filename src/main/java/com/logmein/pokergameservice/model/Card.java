@@ -33,8 +33,8 @@ public class Card implements Comparable<Card>{
             return true;
 
         Card that = (Card)obj;
-        return that.getRank().getValue() == getRank().getValue()
-                && that.getSuit().getValue() == getSuit().getValue();
+        return that.getRank() == getRank()
+                && that.getSuit() == getSuit();
     }
 
     @Override

@@ -32,14 +32,12 @@ public class Game {
 
     public void dealCards(int indexPlayer){
         Card card;
-//        for(Deck deck: gameDeck.getDeckList()){
             if(!gameDeck.getDeck().isEmpty()){
                 card = gameDeck.getDeck().get(0);
                 gameDeck.getDeck().remove(0);
                 this.playerList.get(indexPlayer-1).add(card.getRank().getValue());
                 this.playerList.get(indexPlayer-1).getHand().add(card);
             }
-//        }
     }
 
     public List<Player> orderByDescPlayerScore(){
@@ -51,12 +49,8 @@ public class Game {
 
     public Map<Suit, Integer> countCardsBySuit(){
         Map<Suit, Integer> resultCardsBySuit = new HashMap<>();
-        gameDeck.getDeck().forEach( card -> {
-            resultCardsBySuit.put(card.getSuit(),
-                    resultCardsBySuit.get(card.getSuit()) != null ?
-                            resultCardsBySuit.get(card.getSuit())+1 : 1 );
-
-        });
+        gameDeck.getDeck().forEach( card -> resultCardsBySuit.put(card.getSuit(),
+                resultCardsBySuit.get(card.getSuit()) != null ? resultCardsBySuit.get(card.getSuit())+1 : 1 ));
 
         return resultCardsBySuit;
     }
@@ -69,9 +63,13 @@ public class Game {
         Collections.sort(cardList);
 
         for(Card card : cardList){
-            remainingCards.put(card,
-                    remainingCards.get(card.concatSuitAndRank()) != null ?
-                            remainingCards.get(card.concatSuitAndRank())+1 : 1 );
+            int sumValue;
+            if(remainingCards.get(card) != null){
+                sumValue = remainingCards.get(card)+1;
+            }else{
+                sumValue = 1;
+            }
+            remainingCards.put(card, sumValue);
         }
 
         return remainingCards;
@@ -84,6 +82,8 @@ public class Game {
         gameDeck.addDeck(deck);
         Deck deck2 = new Deck();
         gameDeck.addDeck(deck2);
+        Deck deck3 = new Deck();
+        gameDeck.addDeck(deck3);
         Game game = new Game(gameDeck);
 
 
