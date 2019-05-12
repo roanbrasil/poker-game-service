@@ -1,5 +1,6 @@
 package com.logmein.pokergameservice.controller;
 
+import com.logmein.pokergameservice.model.Deck;
 import com.logmein.pokergameservice.model.Game;
 import com.logmein.pokergameservice.model.IGame;
 import com.logmein.pokergameservice.service.IGameService;
@@ -9,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @Slf4j
 @RestController
@@ -23,6 +26,14 @@ public class GameController {
     public ResponseEntity<Void> create(@RequestBody Game game){
         this.gameService.create(game);
         return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @PutMapping("/{id}/deck")
+    public ResponseEntity<Game> addDeck(@PathVariable(value = "id") String id, @RequestBody Deck deck){
+        Optional<Game> optionalGame = this.gameService.addDeck(id, deck);
+        return optionalGame
+                .map(game -> ResponseEntity.status(HttpStatus.CREATED).body(game))
+                .orElseGet( () -> ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{id}")
