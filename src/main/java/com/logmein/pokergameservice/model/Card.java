@@ -7,7 +7,7 @@ import lombok.ToString;
 @Getter
 @ToString
 @AllArgsConstructor
-public class Card implements Comparable<Card>{
+public class Card {//implements Comparable<Card>{
 
     private Suit suit;
     private Rank rank;
@@ -33,32 +33,32 @@ public class Card implements Comparable<Card>{
 //        throw new RuntimeException("Null Card is not accept " + rank + " " + suit);
 //    }
 
-    private static String concatSuitAndRank(final Suit suit, final Rank rank) {
-        return rank + " " + suit;
+    public String concatSuitAndRank() {
+        return this.suit + " " + this.rank.getValue();
     }
 
-    @Override
-    public int compareTo(Card o) {
-        final int rankComparison = Integer.compare(this.rank.getValue(), o.rank.getValue());
-        return rankComparison != 0 ? rankComparison : Integer.compare(this.suit.getValue(), o.suit.getValue());
-    }
-
-    @Override
-    public boolean equals(final Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        final Card card = (Card) o;
-        return this.rank == card.rank && this.suit == card.suit;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = this.rank != null ? this.rank.hashCode() : 0;
-        result = 31 * result + (this.suit != null ? this.suit.hashCode() : 0);
-        return result;
-    }
+//    @Override
+//    public int compareTo(Card o) {
+//        final int rankComparison = Integer.compare(this.rank.getValue(), o.rank.getValue());
+//        return rankComparison != 0 ? rankComparison : Integer.compare(this.suit.getValue(), o.suit.getValue());
+//    }
+//
+//    @Override
+//    public boolean equals(final Object o) {
+//        if (this == o) {
+//            return true;
+//        }
+//        if (o == null || getClass() != o.getClass()) {
+//            return false;
+//        }
+//        final Card card = (Card) o;
+//        return this.rank == card.rank && this.suit == card.suit;
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        int result = this.rank != null ? this.rank.hashCode() : 0;
+//        result = 31 * result + (this.suit != null ? this.suit.hashCode() : 0);
+//        return result;
+//    }
 }

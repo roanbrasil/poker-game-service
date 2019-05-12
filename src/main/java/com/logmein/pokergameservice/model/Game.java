@@ -3,6 +3,7 @@ package com.logmein.pokergameservice.model;
 import lombok.Getter;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static java.util.Comparator.comparingInt;
 
@@ -60,6 +61,27 @@ public class Game {
         return resultCardsBySuit;
     }
 
+    public Map<String, Integer> countRemainingCards(){
+        Map<String, Integer> remainingCards = new HashMap<>();
+
+        for(Card card : gameDeck.getDeck()){
+            remainingCards.put(card.concatSuitAndRank(),
+                    remainingCards.get(card.concatSuitAndRank()) != null ?
+                            remainingCards.get(card.concatSuitAndRank())+1 : 1 );
+        }
+        Map<String, Integer> result = remainingCards
+               .entrySet()
+               .stream()
+               .sorted(Map.Entry.comparingByKey())
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        Map.Entry::getValue,
+                        (oldValue, newValue) -> oldValue, LinkedHashMap::new));
+//               .collect(Collectors.toList());
+
+        return result;
+    }
+
 
     public static void main(String[] args) {
         Deck deck = new Deck();
@@ -86,6 +108,7 @@ public class Game {
         System.out.println(game.orderByDescPlayerScore().get(0).getTotalValue());
         System.out.println(game.orderByDescPlayerScore().get(1).getTotalValue());
         System.out.println(game.countCardsBySuit());
+        System.out.println(game.countRemainingCards());
 
     }
 }
