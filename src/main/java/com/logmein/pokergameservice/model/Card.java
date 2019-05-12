@@ -1,10 +1,8 @@
 package com.logmein.pokergameservice.model;
 
-import lombok.*;
-
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.ToString;
 
 @Getter
 @ToString
@@ -14,26 +12,26 @@ public class Card implements Comparable<Card>{
     private Suit suit;
     private Rank rank;
 
-    private final static Map<String, Card> CACHE = createCache();
-
-    private static Map<String, Card> createCache() {
-        final Map<String, Card> cache = new HashMap<>();
-        for (final Suit suit : Suit.values()) {
-            for (final Rank rank : Rank.values()) {
-                cache.put(concatSuitAndRank(suit, rank), new Card(suit, rank));
-            }
-        }
-        return Collections.unmodifiableMap(cache);
-    }
-
-    static Card getCard(final Rank rank,
-                        final Suit suit) {
-        final Card card = CACHE.get(concatSuitAndRank(suit, rank));
-        if (card != null) {
-            return card;
-        }
-        throw new RuntimeException("Null Card is not accept " + rank + " " + suit);
-    }
+//    private final static Map<String, Card> CACHE = createCache();
+//
+//    private static Map<String, Card> createCache() {
+//        final Map<String, Card> cache = new HashMap<>();
+//        for (final Suit suit : Suit.values()) {
+//            for (final Rank rank : Rank.values()) {
+//                cache.put(concatSuitAndRank(suit, rank), new Card(suit, rank));
+//            }
+//        }
+//        return Collections.unmodifiableMap(cache);
+//    }
+//
+//    static Card getCard(final Rank rank,
+//                        final Suit suit) {
+//        final Card card = CACHE.get(concatSuitAndRank(suit, rank));
+//        if (card != null) {
+//            return card;
+//        }
+//        throw new RuntimeException("Null Card is not accept " + rank + " " + suit);
+//    }
 
     private static String concatSuitAndRank(final Suit suit, final Rank rank) {
         return rank + " " + suit;

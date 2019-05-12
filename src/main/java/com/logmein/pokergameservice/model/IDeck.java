@@ -7,5 +7,4 @@ public interface IDeck {
     Optional<Card> deal();
     int size();
     boolean contains(final Card card);
-    void shuffle();
 }

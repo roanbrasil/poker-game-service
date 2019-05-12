@@ -1,19 +1,23 @@
 package com.logmein.pokergameservice.model;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
 import lombok.ToString;
 
-import java.util.SortedSet;
+import java.util.ArrayList;
+import java.util.List;
 
-@Data
+@Getter
 @ToString
-@NoArgsConstructor
-@AllArgsConstructor
-public class Player {
-    public final static int NUMBER_CARDS_IN_HAND = 2;
-    private String name;
-    private SortedSet<Card> hand;
+public class Player{
+    private List<Card> hand;
+    private int totalValue;
+
+    public Player(){
+        this.hand = new ArrayList<>();
+        this.totalValue = 0;
+    }
+    public void add(int value){
+        this.totalValue += value;
+    }
 }
