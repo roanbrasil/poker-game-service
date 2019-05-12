@@ -14,10 +14,6 @@ public class Card implements Comparable<Card>{
     private Suit suit;
     private Rank rank;
 
-    public String concatSuitAndRank() {
-        return this.suit + " " + this.rank;
-    }
-
     @Override
     public int compareTo(Card card) {
         return Integer.compare(card.suit.getValue() + (card.rank.getValue() * 10),

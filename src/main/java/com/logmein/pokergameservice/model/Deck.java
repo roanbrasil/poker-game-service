@@ -6,10 +6,10 @@ import java.util.*;
 
 @Getter
 @ToString
-public class Deck { //implements IDeck{
+public class Deck {
 
-//    private Stack<Card> cardStack;
-
+    @Setter
+    private String id;
     private List<Card> cardList;
 
     public Deck(){
@@ -17,31 +17,16 @@ public class Deck { //implements IDeck{
        this.shuffle();
     }
 
-    //Create a deck
     private List<Card> createDeck() {
         List<Card> cardList = new ArrayList<>();
         for(final Suit suit : Suit.values()) {
             for(final Rank rank : Rank.values()) {
-//                cardStack.push(Card.getCard(rank, suit));
                 cardList.add(new Card(suit, rank));
             }
         }
 
         return cardList;
 
-    }
-
-//    public Optional<Card> deal() {
-//        return this.cardList.empty() ? Optional.empty() :
-//                Optional.of(this.cardStack.pop());
-//    }
-
-    public int size(){
-        return cardList.size();
-    }
-
-    public boolean contains(final Card card){
-        return this.cardList.contains(card);
     }
 
     public void shuffle(){
@@ -55,13 +40,4 @@ public class Deck { //implements IDeck{
             cardList.set(i, card);
         }
     }
-
-//    public static void main(String[] args) {
-//        Deck deck = new Deck();
-////        deck.cardList.forEach(System.out::println);
-//        System.out.println(deck.cardList);
-//        deck.shuffle();
-//        System.out.println(deck.cardList);
-////        deck.cardList.forEach(System.out::println);
-//    }
 }

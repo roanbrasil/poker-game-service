@@ -17,6 +17,7 @@ public class Player{
         this.hand = new ArrayList<>();
         this.totalValue = 0;
     }
+
     public void add(int value){
         this.totalValue += value;
     }
