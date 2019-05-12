@@ -1,10 +1,10 @@
 package com.logmein.pokergameservice.model;
 
 public enum Suit {
-    HEART(1),
-    SPADE(2),
-    CLUB(3),
-    DIAMOND(4);
+    HEART(4),
+    SPADE(3),
+    CLUB(2),
+    DIAMOND(1);
 
     private int value;
 

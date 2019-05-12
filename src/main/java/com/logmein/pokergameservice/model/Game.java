@@ -61,25 +61,20 @@ public class Game {
         return resultCardsBySuit;
     }
 
-    public Map<String, Integer> countRemainingCards(){
-        Map<String, Integer> remainingCards = new HashMap<>();
+    public Map<Card, Integer> countRemainingCards(){
+        LinkedHashMap<Card, Integer> remainingCards = new LinkedHashMap<>();
 
-        for(Card card : gameDeck.getDeck()){
-            remainingCards.put(card.concatSuitAndRank(),
+        List<Card> cardList = new ArrayList<>();
+        cardList.addAll(gameDeck.getDeck());
+        Collections.sort(cardList);
+
+        for(Card card : cardList){
+            remainingCards.put(card,
                     remainingCards.get(card.concatSuitAndRank()) != null ?
                             remainingCards.get(card.concatSuitAndRank())+1 : 1 );
         }
-        Map<String, Integer> result = remainingCards
-               .entrySet()
-               .stream()
-               .sorted(Map.Entry.comparingByKey())
-                .collect(Collectors.toMap(
-                        Map.Entry::getKey,
-                        Map.Entry::getValue,
-                        (oldValue, newValue) -> oldValue, LinkedHashMap::new));
-//               .collect(Collectors.toList());
 
-        return result;
+        return remainingCards;
     }
 
 
@@ -101,13 +96,12 @@ public class Game {
         for(int i = 0; i <= 30; i++){
             game.dealCards(2);
         }
-//        System.out.println(game.playerList);
-        System.out.println(game.playerList.get(0).getHand().size());
-        System.out.println(game.orderByDescPlayerScore().get(0));
-        System.out.println(game.orderByDescPlayerScore().get(1));
-        System.out.println(game.orderByDescPlayerScore().get(0).getTotalValue());
-        System.out.println(game.orderByDescPlayerScore().get(1).getTotalValue());
-        System.out.println(game.countCardsBySuit());
+//        System.out.println(game.playerList.get(0).getHand().size());
+//        System.out.println(game.orderByDescPlayerScore().get(0));
+//        System.out.println(game.orderByDescPlayerScore().get(1));
+//        System.out.println(game.orderByDescPlayerScore().get(0).getTotalValue());
+//        System.out.println(game.orderByDescPlayerScore().get(1).getTotalValue());
+//        System.out.println(game.countCardsBySuit());
         System.out.println(game.countRemainingCards());
 
     }
