@@ -32,7 +32,7 @@ public class GameController {
     public ResponseEntity<Game> addDeck(@PathVariable(value = "gameId") String gameId, @RequestBody Deck deck){
         Optional<Game> optionalGame = this.gameService.addDeck(gameId, deck);
         return optionalGame
-                .map(game -> ResponseEntity.status(HttpStatus.CREATED).body(game))
+                .map(game -> ResponseEntity.status(HttpStatus.OK).body(game))
                 .orElseGet( () -> ResponseEntity.notFound().build());
     }
 
@@ -40,7 +40,7 @@ public class GameController {
     public ResponseEntity<Game> addPlayer(@PathVariable(value = "gameId") String gameId, @RequestBody List<Player> playerList){
         Optional<Game> optionalGame = this.gameService.addPlayer(gameId, playerList);
         return optionalGame
-                .map(game -> ResponseEntity.status(HttpStatus.CREATED).body(game))
+                .map(game -> ResponseEntity.status(HttpStatus.OK).body(game))
                 .orElseGet( () -> ResponseEntity.notFound().build());
     }
 
@@ -49,7 +49,7 @@ public class GameController {
         Optional<Game> optionalGame = this.gameService.dealCards(gameId, playerId);
 
         return optionalGame
-                .map(game -> ResponseEntity.status(HttpStatus.CREATED).body(game))
+                .map(game -> ResponseEntity.status(HttpStatus.OK).body(game))
                 .orElseGet( () -> ResponseEntity.notFound().build());
     }
 
@@ -58,7 +58,7 @@ public class GameController {
         Optional<List<Card>> optionalCardList = this.gameService.getCardListFromAPlayer(gameId, playerId);
 
         return optionalCardList
-                .map(cardList -> ResponseEntity.status(HttpStatus.CREATED).body(cardList))
+                .map(cardList -> ResponseEntity.status(HttpStatus.OK).body(cardList))
                 .orElseGet( () -> ResponseEntity.notFound().build());
     }
 
@@ -67,7 +67,7 @@ public class GameController {
         Optional<List<Player>> optionalPlayerList = this.gameService.getPlayersListAndTheirScore(gameId);
 
         return optionalPlayerList
-                .map(players -> ResponseEntity.status(HttpStatus.CREATED).body(players))
+                .map(players -> ResponseEntity.status(HttpStatus.OK).body(players))
                 .orElseGet( () -> ResponseEntity.notFound().build());
     }
 
@@ -76,7 +76,7 @@ public class GameController {
         Optional<Map<Suit, Integer>> optionalSuitUndealt = this.gameService.getQtyCardsPerSuitUndealt(gameId);
 
         return optionalSuitUndealt
-                .map(suitUndealt -> ResponseEntity.status(HttpStatus.CREATED).body(suitUndealt))
+                .map(suitUndealt -> ResponseEntity.status(HttpStatus.OK).body(suitUndealt))
                 .orElseGet( () -> ResponseEntity.notFound().build());
     }
 
@@ -85,7 +85,7 @@ public class GameController {
         Optional<Map<Card, Integer>> optionalRemainingCards = this.gameService.getRemainingCards(gameId);
 
         return optionalRemainingCards
-                .map(remainingCards -> ResponseEntity.status(HttpStatus.CREATED).body(remainingCards))
+                .map(remainingCards -> ResponseEntity.status(HttpStatus.OK).body(remainingCards))
                 .orElseGet( () -> ResponseEntity.notFound().build());
     }
 
