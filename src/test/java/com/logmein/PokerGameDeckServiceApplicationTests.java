@@ -1,4 +1,4 @@
-package com.logmein.pokergameservice;
+package com.logmein;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

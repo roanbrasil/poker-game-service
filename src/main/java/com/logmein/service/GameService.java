@@ -1,6 +1,6 @@
-package com.logmein.pokergameservice.service;
+package com.logmein.service;
 
-import com.logmein.pokergameservice.model.*;
+import com.logmein.model.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -110,7 +110,10 @@ public class GameService implements IGameService {
 
     @Override
     public Optional<List<Player>> getPlayersListAndTheirScore(String gameId) {
-        return Optional.empty();
+        log.info("Get Players List And Their Score: {}", gameId);
+        Game game = this.gameMap.get(gameId);
+
+        return Optional.ofNullable(game.getPlayerList());
     }
 
     @Override
@@ -124,12 +127,18 @@ public class GameService implements IGameService {
 
     @Override
     public Optional<Map<Card, Integer>> getRemainingCards(String gameId) {
-        return Optional.empty();
+        log.info("Get Remaining Cards: {}", gameId);
+        Game game = this.gameMap.get(gameId);
+
+        return Optional.ofNullable(game.countRemainingCards());
     }
 
     @Override
     public Optional<Map<Suit, Integer>> getQtyCardsPerSuitUndealt(String gameId) {
-        return Optional.empty();
+        log.info("Get Qty Cards Per Suit Undealt: {}", gameId);
+        Game game = this.gameMap.get(gameId);
+
+        return Optional.ofNullable(game.countCardsBySuit());
     }
 
 }

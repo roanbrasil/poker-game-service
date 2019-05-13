@@ -1,6 +1,6 @@
-package com.logmein.pokergameservice.service;
+package com.logmein.service;
 
-import com.logmein.pokergameservice.model.Deck;
+import com.logmein.model.Deck;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

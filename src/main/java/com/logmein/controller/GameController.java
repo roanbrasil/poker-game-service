@@ -1,7 +1,7 @@
-package com.logmein.pokergameservice.controller;
+package com.logmein.controller;
 
-import com.logmein.pokergameservice.model.*;
-import com.logmein.pokergameservice.service.IGameService;
+import com.logmein.model.*;
+import com.logmein.service.IGameService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

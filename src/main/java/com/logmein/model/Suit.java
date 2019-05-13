@@ -1,4 +1,4 @@
-package com.logmein.pokergameservice.model;
+package com.logmein.model;
 
 public enum Suit {
     HEART(4),

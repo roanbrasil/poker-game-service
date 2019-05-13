@@ -1,4 +1,4 @@
-package com.logmein.pokergameservice;
+package com.logmein;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,6 +1,6 @@
-package com.logmein.pokergameservice.service;
+package com.logmein.service;
 
-import com.logmein.pokergameservice.model.*;
+import com.logmein.model.*;
 
 import java.util.List;
 import java.util.Map;
