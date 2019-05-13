@@ -89,7 +89,7 @@ public class GameService implements IGameService {
         log.info("Deal Cards: {} --> Player Id: {}", gameId, playerId);
         Game game = this.gameMap.get(gameId);
         if(game != null) {
-            game.dealCards(Integer.valueOf(playerId));
+            game.dealCards(playerId);
         }
 
         return Optional.ofNullable(game);

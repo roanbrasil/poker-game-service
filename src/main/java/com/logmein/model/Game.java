@@ -3,6 +3,7 @@ package com.logmein.model;
 import lombok.*;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static java.util.Comparator.comparingInt;
 
@@ -29,16 +30,24 @@ public class Game {
         return this.playerList.get(index).getHand();
     }
 
-    public void dealCards(int indexPlayer){
+    public void dealCards(String playerId){
         if(!gameDeck.getDeck().isEmpty()){
             Card card = gameDeck.getDeck().get(0);
             gameDeck.getDeck().remove(0);
 
-            this.playerList.get(indexPlayer-1)
+            AtomicInteger position = new AtomicInteger();
+            Player foundPlayer = this.playerList
+                    .stream()
+                    .peek(x -> position.incrementAndGet())
+                    .filter(player -> player.getId().equals(playerId))
+                    .findFirst()
+                    .get();
+
+            this.playerList.get(position.intValue())
                     .add(card.getRank()
                             .getValue());
 
-            this.playerList.get(indexPlayer-1)
+            this.playerList.get(position.intValue())
                     .getHand()
                     .add(card);
         }
