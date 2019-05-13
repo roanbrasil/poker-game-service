@@ -11,24 +11,18 @@ import static java.util.Comparator.comparingInt;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class Game implements IGame {
+public class Game {
 
     private String id;
     private List<Player> playerList;
     private GameDeck gameDeck;
 
-//    public Game(GameDeck gameDeck){
-//        this.playerList = new ArrayList<>();
-//        this.gameDeck = gameDeck;
-//        this.id = UUID.randomUUID().toString();
-//    }
-
-    public void addPlayer(Player player){
-        this.playerList.add(player);
+    public void addPlayerList(List<Player> playerList){
+        this.playerList.addAll(playerList);
     }
 
-    public void removePlayer(Player player){
-        this.playerList.remove(player);
+    public void removePlayerList(List<Player> playerList){
+        this.playerList.removeAll(playerList);
     }
 
     public List<Card> getCardsByPlayer(int index){

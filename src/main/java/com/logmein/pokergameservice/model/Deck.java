@@ -14,7 +14,6 @@ public class Deck {
 
     public Deck(){
        this.cardList = createDeck();
-       this.shuffle();
     }
 
     private List<Card> createDeck() {
@@ -27,17 +26,5 @@ public class Deck {
 
         return cardList;
 
-    }
-
-    public void shuffle(){
-        Random rnd = new Random();
-        for (int i = cardList.size() - 1; i > 0; i--)
-        {
-            int index = rnd.nextInt(i + 1);
-            // Simple swap
-            Card card = cardList.get(index);
-            cardList.set(index, cardList.get(i));
-            cardList.set(i, card);
-        }
     }
 }
