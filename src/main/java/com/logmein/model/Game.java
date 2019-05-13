@@ -43,11 +43,11 @@ public class Game {
                     .findFirst()
                     .get();
 
-            this.playerList.get(position.intValue())
+            this.playerList.get(position.intValue()-1)
                     .add(card.getRank()
                             .getValue());
 
-            this.playerList.get(position.intValue())
+            this.playerList.get(position.intValue()-1)
                     .getHand()
                     .add(card);
         }
