@@ -5,21 +5,22 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 @Slf4j
 @Service
 public class GameService implements IGameService {
 
-    Map<String, Game> gameMap;
+    ConcurrentMap<String, Game> gameMap;
 
 
     @Autowired
     public GameService(){
-        this.gameMap = new HashMap<>();
+        this.gameMap = new ConcurrentHashMap<>();
     }
 
     @Override
@@ -47,7 +48,6 @@ public class GameService implements IGameService {
 
             game.setGameDeck(gameDeck);
 
-            this.gameMap.replace(gameId, game);
             log.debug("New Game Updated: {} ---> Map: {}", game, this.gameMap);
         }
 

@@ -32,24 +32,17 @@ public class Game {
 
     public void dealCards(String playerId){
         if(!gameDeck.getDeck().isEmpty()){
-            Card card = gameDeck.getDeck().get(0);
-            gameDeck.getDeck().remove(0);
+            Card card = gameDeck.getDeck().remove(0);
 
-            AtomicInteger position = new AtomicInteger();
-            Player foundPlayer = this.playerList
-                    .stream()
-                    .peek(x -> position.incrementAndGet())
-                    .filter(player -> player.getId().equals(playerId))
-                    .findFirst()
-                    .get();
-
-            this.playerList.get(position.intValue()-1)
-                    .add(card.getRank()
+            for (Player player : playerList) {
+                if(player.getId().equals(playerId)) {
+                    player.add(card.getRank()
                             .getValue());
 
-            this.playerList.get(position.intValue()-1)
-                    .getHand()
-                    .add(card);
+                    player.getHand().add(card);
+                    break;
+                }
+            }
         }
     }
 
